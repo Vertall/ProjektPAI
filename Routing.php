@@ -2,6 +2,7 @@
 
 require_once 'Controllers//BoardController.php';
 require_once 'Controllers//SecurityController.php';
+require_once 'Controllers//MessageController.php';
 
 class Routing {
     private $routes = [];
@@ -44,6 +45,26 @@ class Routing {
             'settings' => [
                 'controller' => 'SecurityController',
                 'action' => 'changeSettings'
+            ],
+            'sendMessagePage' => [
+                'controller' => 'MessageController',
+                'action' => 'sendMessagePage'
+            ],
+            'sendMessage' => [
+                'controller' => 'MessageController',
+                'action' => 'sendMessage'
+            ],
+            'messages' => [
+                'controller' => 'MessageController',
+                'action' => 'yourMessagesReceived'
+            ],
+            'messagesSent' => [
+                'controller' => 'MessageController',
+                'action' => 'yourMessagesSent'
+            ],
+            'goToMessage' => [
+                'controller' => 'MessageController',
+                'action' => 'goToMessage'
             ]
         ];
     }

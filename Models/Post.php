@@ -3,6 +3,7 @@
 
 class Post {
     private $id;
+    private $userID;
     private $title;
     private $town;
     private $agreement;
@@ -10,14 +11,20 @@ class Post {
     private $content;
 
 
-    public function __construct(string $title, string $town, string $agreement, string $company, string $content, string $id)
+    public function __construct(string $userID, string $title, string $town, string $agreement, string $company, string $content, string $id)
     {
+        $this->userID = $userID;
         $this->title = $title;
         $this->town = $town;
         $this->agreement = $agreement;
         $this->company = $company;
         $this->content = $content;
         $this->id = $id;
+    }
+
+    public function getUserID(): string 
+    {
+        return $this->userID;
     }
 
     public function getTitle(): string 

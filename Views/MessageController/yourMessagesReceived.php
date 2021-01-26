@@ -36,33 +36,33 @@
 <?php include(dirname(__DIR__).'/Common/navbar.php'); ?>
 <div class="container">
 <div class="board">
-<h1 style="font-size:40px;text-align:center">TWOJE OGŁOSZENIA</h1><br>
-        <?php $tmp = 0;
-        foreach($posts as $post): ?>
-            <?php $tmp++;
-                if($tmp>$site*5 || $tmp<=($site-1)*5) continue;
-            ?>
+    <div class="messagesSites">
+    <form action="" method="GET" id="site">
+                <button type="submit" id="messageSite" disabled>ODEBRANE</button>
+                <input type="hidden" name="page" value="messages">
+            </form>
+            <form action="" method="GET" id="site">
+                <button type="submit" id="messageSite">WYSŁANE</button>
+                <input type="hidden" name="page" value="messagesSent">
+            </form>
+    </div>
+    <h1 style="font-size:40px;text-align:center">ODEBRANE WIADOMOŚCI</h1><br>
+    <?php if($conversations == NULL) { ?>
+    <h1 style="font-size:20px;text-align:center">BRAK</h1><br>
+    <?php } ?>
+    <?php $max = count($names);
+    for($i=0; $i<$max; $i++){ ?>
             <form action="" method="GET" id="post">
                 
-                <input type="submit" name="button" id="button" value=<?= $post->getTitle() ?> />
+                <input type="submit" name="button" id="button" value="Od: <?= $names[$i] ?>" />
                 <div class="wraper">
-                <div class="agreement"><?= $post->getAgreement() ?></div>
-                <div class="company"><?= $post->getCompany() ?></div>
-                <div class="town"><?= $post->getTown() ?></div>
-                <input type="hidden" name="page" value="goToPost">
-                <input type="hidden" name="id" value=<?= $post->getID() ?>>
-                
+                <div class="title">Nazwa ogłoszenia: <?= $titles[$i] ?></div>
+                <div class="time"><?= $conversations[$i]->getTime() ?></div>
+                <input type="hidden" name="page" value="goToMessage">
+                <input type="hidden" name="id" value=<?= $conversations[$i]->getID() ?>>
                 </div>
             </form>
-        <?php endforeach;
-        $pages = ceil(count($posts)/5)?>
-        <div class="pages">
-        <?php for($i=1; $i<=$pages; $i++){?>
-            <form action="" method="GET" id="page">
-                <input type="submit" name="site" id="getLa" value=<?= $i ?> />
-                <input type="hidden" name="page" value="yourPosts">
-            </form>
-        <?php }?>
+    <?php } ?>
 </div>
 </div>
 </body>

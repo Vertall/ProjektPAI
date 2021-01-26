@@ -1,0 +1,13 @@
+.setting {
+    margin: 5% 3% 5% 3%;
+}
+
+button {
+    float:right
+}
+
+input {
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

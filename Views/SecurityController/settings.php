@@ -16,7 +16,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="Stylesheet" type="text/css" href="../Public/Style/bootstrap.css" />
     <link rel="Stylesheet" type="text/css" href="../Public/Style/style.css" />
-    <link rel="Stylesheet" type="text/css" href="../Public/Style/board.css" />
+    <link rel="Stylesheet" type="text/css" href="../Public/Style/settings.css" />
     
     <title>Job4You</title>
 </head>
@@ -24,6 +24,7 @@
 <?php include(dirname(__DIR__).'/Common/navbar.php'); ?>
 <div class="container">
     <div class="setting">
+        <h1 style="font-size:40px;text-align:center;color:black">USTAWIENIA</h1><br>
         <div class="messages">
                         <?php
                             if(isset($messages)){
@@ -33,23 +34,26 @@
                             }
                         ?>
                 </div>
-        <form action="?page=settings" method="POST">
                 Zmień imię:
+        <form action="?page=settings" method="POST">
                 <input name="name" type="text" placeholder="Imię">
                 <button type="submit">Zmień imię</button>
         </form>
+        <br><br>
+        Zmień nazwisko:
         <form action="?page=settings" method="POST">
-                Zmień nazwisko:
                 <input name="surname" type="text" placeholder="Nazwisko">
                 <button type="submit">Zmień nazwisko</button>
         </form>
+        <br><br>
+        Zmień e-mail:
         <form action="?page=settings" method="POST">
-                Zmień e-mail:
                 <input name="email" type="text" placeholder="E-mail">
                 <button type="submit">Zmień e-mail</button>
         </form>
+        <br><br>
+        Zmień hasło:
         <form action="?page=settings" method="POST">
-                Zmień hasło:
                 <input name="password" type="password" placeholder="Hasło">
                 <input name="password2" type="password" placeholder="Potwierdź hasło">
                 <button type="submit">Zmień hasło</button> 

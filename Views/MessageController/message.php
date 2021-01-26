@@ -17,43 +17,51 @@
     <link rel="Stylesheet" type="text/css" href="../Public/Style/bootstrap.css" />
     <link rel="Stylesheet" type="text/css" href="../Public/Style/style.css" />
     <link rel="Stylesheet" type="text/css" href="../Public/Style/post.css" />
-    
+    <script>
+        $(document).ready(function(){
+            $("input").on({
+                mouseenter: function(){
+                    $(this).css("text-decoration", "underline");
+                },
+                mouseleave: function(){
+                    $(this).css("text-decoration", "none");
+                }
+            });
+        });
+    </script>
+
     <title>Job4You</title>
 </head>
 <body>
 <?php include(dirname(__DIR__).'/Common/navbar.php'); ?>
 <div class="container">
     <div class="post">
-        Tytuł
+        Nadawca
         <div class='box'>
-            <?= $posts[0]->getTitle() ?>
+            <?= $senderFullName ?>
         </div>
-        Typ umowy
+        Odbiorca
         <div class='box'>
-        <?= $posts[0]->getAgreement() ?>
+        <?= $receiverFullName ?>
         </div>
-        Nazwa firmy
+        Data
         <div class='box'>
-        <?= $posts[0]->getCompany() ?>
+        <?= $messages[0]->getTime() ?>
         </div>
-        Miasto
+        Ogłoszenie
+        
         <div class='box'>
-        <?= $posts[0]->getTown() ?>
+        <form action="" method="GET" id="post">
+                
+                <input type="submit" name="button" id="button" value=<?= $postTitle ?> />
+                <input type="hidden" name="page" value="goToPost">
+                <input type="hidden" name="id" value=<?= $messages[0]->getPostID() ?>>
+            </form>
         </div>
-        Treść ogłoszenia
+        Treść wiadomości
         <div class='box'>
-        <p style="white-space: pre-line"><?= $posts[0]->getContent() ?></p>
+        <p style="white-space: pre-line"><?= $messages[0]->getContent() ?></p>
         </div>
-        <?php if($_SESSION["id"]==$posts[0]->getUserID()) { ?>
-        <button type="button">Edytuj ogłoszenie</button>
-        <?php } ?>
-        <?php if($_SESSION["id"]!=$posts[0]->getUserID()) { ?>
-        <form action="?page=sendMessage" method="GET" id="send">
-                <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
-                <input type="hidden" name="page" value="sendMessagePage">
-                <button type="submit">Zgłoś się</button>
-        </form>
-        <?php } ?>
     </div>
 </div>
 </body>

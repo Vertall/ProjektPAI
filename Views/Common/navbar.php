@@ -16,6 +16,9 @@
         <a class="nav-link" href="?page=add">DODAJ OGŁOSZENIE</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="?page=messages">WIADOMOŚCI</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="?page=settings">USTAWIENIA</a>
       </li>
       <li class="nav-item">

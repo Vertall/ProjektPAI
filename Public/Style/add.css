@@ -1,0 +1,28 @@
+.container {
+    flex-direction: column;
+}
+
+.add {
+    position: relative;
+    width: 500px;
+    height: 100%;
+    margin: 10% 10% 10% 10%;
+    color: white;
+}
+
+input, textarea {
+    width: 100%;
+    margin-bottom: 3%;
+}
+
+button {
+    float: right;
+  }
+
+  @media only screen and (max-device-width: 992px){
+    .add {
+        margin: 10% 3% 10% 3%;
+        width: 94%;
+        font-size: 1em;
+      }
+}

@@ -14,7 +14,7 @@ class BoardController extends AppController {
         $data = [];
         while($row = $stmt->fetch())
         {
-            $post = new Post($row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
+            $post = new Post($row['id_user'], $row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
             array_push($data, $post);
         }
         $this->render('board', ['posts' => $data, 'title' => '', 'town' => '', 'site' => 1]);
@@ -29,7 +29,7 @@ class BoardController extends AppController {
         $data = [];
         while($row = $stmt->fetch())
         {
-            $post = new Post($row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
+            $post = new Post($row['id_user'], $row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
             array_push($data, $post);
         }
         if(isset($_GET['site'])) $site = $_GET['site'];
@@ -46,7 +46,7 @@ class BoardController extends AppController {
             $stmt->bindParam(':id_post', $_GET['id'], PDO::PARAM_STR);
             $stmt->execute();
             $pos = $stmt->fetch(PDO::FETCH_ASSOC);
-            $post = new Post($pos['title'], $pos['town'], $pos['agreement'], $pos['company'], $pos['content'], $pos['id_post']);
+            $post = new Post($pos['id_user'], $pos['title'], $pos['town'], $pos['agreement'], $pos['company'], $pos['content'], $pos['id_post']);
 
             array_push($data, $post);
             $this->render('post', ['posts' => $data]);
@@ -68,7 +68,7 @@ class BoardController extends AppController {
                 $stmt->execute();
                 while($row = $stmt->fetch())
                 {
-                    $post = new Post($row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
+                    $post = new Post($row['id_user'], $row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
                     array_push($data, $post);
                 }
                 $this->render('board', ['posts' => $data, 'title' => $_GET['title'], 'town' => $_GET['town'], 'site' => $_GET['site']]);
@@ -92,7 +92,7 @@ class BoardController extends AppController {
                 $stmt->execute();
                 while($row = $stmt->fetch())
                 {
-                    $post = new Post($row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
+                    $post = new Post($row['id_user'], $row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
                     array_push($data, $post);
                 }
                 $this->render('board', ['posts' => $data, 'title' => $_GET['title'], 'town' => $_GET['town'], 'site' => $_GET['site']]);
@@ -103,7 +103,7 @@ class BoardController extends AppController {
         $stmt->execute();
         while($row = $stmt->fetch())
         {
-            $post = new Post($row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
+            $post = new Post($row['id_user'], $row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
             array_push($data, $post);
         }
         $this->render('board', ['posts' => $data, 'title' => $_GET['title'], 'town' => $_GET['town'], 'site' => $_GET['site']]);
@@ -119,7 +119,7 @@ class BoardController extends AppController {
         {
             $tmp++;
             if($tmp<=$_GET['site']*5 && $tmp>($_GET['site']-1)*5){
-                $post = new Post($row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
+                $post = new Post($row['id_user'], $row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
                 array_push($data, $post);
             }
         }
@@ -150,6 +150,7 @@ class BoardController extends AppController {
                 $this->render('add', ['messages' => ['Brak treści']]);
                 return;
             }
+            $_POST['content'] = str_replace('\n', '<br>', $_POST['content']);
             try {
                 $stmt = $database->connect()->prepare('
                     INSERT INTO `post` (`id_user`, `title`, `agreement`, `company`, `town`, `content`) 

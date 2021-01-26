@@ -7,6 +7,14 @@
     width: 100%;
     justify-content: center;
 }
+#validate{
+    color: black;
+    background-color: #2699fb;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 1em;
+    line-height: 2.5em;
+    font-size: 1em;
+}
 
 form {
     width: 30%;
@@ -19,7 +27,6 @@ form > input {
     margin-top: 2em;  
     width: 100%;
 }
-
 
 .login > button, .register > button {
     margin-top: 5%;
@@ -49,6 +56,10 @@ form > button {
 }
 
 @media only screen and (max-device-width: 992px){
+    .container {
+        flex-direction: column;
+    }
+    
     .login, .register {
         position: static;
         left: auto;

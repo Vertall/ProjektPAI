@@ -17,15 +17,14 @@
 
     <link rel="Stylesheet" type="text/css" href="../Public/Style/bootstrap.css" />
     <link rel="Stylesheet" type="text/css" href="../Public/Style/style.css" />
-    <link rel="Stylesheet" type="text/css" href="../Public/Style/board.css" />
+    <link rel="Stylesheet" type="text/css" href="../Public/Style/add.css" />
     
     <title>Job4You</title>
 </head>
 <body>
 <?php include(dirname(__DIR__).'/Common/navbar.php'); ?>
 <div class="container">
-<div class="add">
-        <form action="?page=add" method="POST">
+        <form action="?page=add" method="POST" class="add">
                 <div class="messages">
                         <?php
                             if(isset($messages)){
@@ -35,14 +34,14 @@
                             }
                         ?>
                 </div>
+                <h1 style="font-size:40px;text-align:center;color:black">DODAJ OGŁOSZENIE</h1><br>
                 <input name="title" type="text" placeholder="Tytuł">
                 <input name="agreement" type="text" placeholder="Typ umowy">
                 <input name="company" type="text" placeholder="Nazwa firmy">
                 <input name="town" type="text" placeholder="Miasto">
-                <input name="content" type="text" placeholder="Treść ogłoszenia">
+                <textarea class="text" name="content" placeholder="Treść ogłoszenia" rows="5"></textarea>
                 <button type="submit">Dodaj ogłoszenie</button>
-        </form>
-    </div>
+                        </form>
 </div>
 </body>
 </html>
