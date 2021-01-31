@@ -35,6 +35,15 @@
 <?php include(dirname(__DIR__).'/Common/navbar.php'); ?>
 <div class="container">
 <div class="board">
+<div class="messages">
+                        <?php
+                            if(isset($messages)){
+                                foreach($messages as $message) {
+                                    echo $message;
+                                }
+                            }
+                        ?>
+                </div>
         <form action="" method="GET" id="search">
                 <input type="hidden" name="page" value="searchPost">
                 <input name="title" type="text" placeholder="Wpisz nazwę stanowiska...">

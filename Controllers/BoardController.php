@@ -171,4 +171,25 @@ class BoardController extends AppController {
         }
         $this->render('add');
     }
+
+    public function deletePost()
+    {
+        $database = new Database();
+        $data = [];
+        if ($this->isGet()) {
+            $stmt = $database->connect()->prepare('DELETE FROM `post` WHERE id_post = :id_post;');
+            $stmt->bindParam(':id_post', $_GET['id'], PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $stmt = $database->connect()->prepare('SELECT * FROM post');
+            $stmt->execute();
+            while($row = $stmt->fetch())
+            {
+                $post = new Post($row['id_user'], $row['title'], $row['town'], $row['agreement'], $row['company'], $row['content'], $row['id_post']);
+                array_push($data, $post);
+            }
+            $this->render('board', ['messages' => ['Pomyślnie usunięto ogłoszenie'], 'posts' => $data, 'title' => '', 'town' => '', 'site' => 1]);
+            return;
+        }
+    }
 }

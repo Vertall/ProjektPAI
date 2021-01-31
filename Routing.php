@@ -65,6 +65,10 @@ class Routing {
             'goToMessage' => [
                 'controller' => 'MessageController',
                 'action' => 'goToMessage'
+            ],
+            'deletePost' => [
+                'controller' => 'BoardController',
+                'action' => 'deletePost'
             ]
         ];
     }

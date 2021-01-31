@@ -45,7 +45,11 @@
         <p style="white-space: pre-line"><?= $posts[0]->getContent() ?></p>
         </div>
         <?php if($_SESSION["id"]==$posts[0]->getUserID()) { ?>
-        <button type="button">Edytuj ogłoszenie</button>
+        <form action="?page=sendMessage" method="GET" id="send">
+                <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
+                <input type="hidden" name="page" value="deletePost">
+                <button type="submit">Usuń ogłoszenie</button>
+        </form>
         <?php } ?>
         <?php if($_SESSION["id"]!=$posts[0]->getUserID()) { ?>
         <form action="?page=sendMessage" method="GET" id="send">
