@@ -1,12 +1,4 @@
-<?php
-    if(!isset($_SESSION['id']) and !isset($_SESSION['role'])) {
-        die('You are not logged in!');
-    }
-
-    if(!in_array('ROLE_USER', $_SESSION['role'])) {
-        die('You do not have permission to watch this page!');
-    }
-?>
+<?php include(dirname(__DIR__).'/Common/checkPermissions.php'); ?>
 
 <!DOCTYPE html>
 <head>
@@ -25,23 +17,15 @@
 <?php include(dirname(__DIR__).'/Common/navbar.php'); ?>
 <div class="container">
         <form action="?page=add" method="POST" class="add">
-                <div class="messages">
-                        <?php
-                            if(isset($messages)){
-                                foreach($messages as $message) {
-                                    echo $message;
-                                }
-                            }
-                        ?>
-                </div>
-                <h1 style="font-size:40px;text-align:center;color:black">DODAJ OGŁOSZENIE</h1><br>
-                <input name="title" type="text" placeholder="Tytuł">
-                <input name="agreement" type="text" placeholder="Typ umowy">
-                <input name="company" type="text" placeholder="Nazwa firmy">
-                <input name="town" type="text" placeholder="Miasto">
-                <textarea class="text" name="content" placeholder="Treść ogłoszenia" rows="5"></textarea>
-                <button type="submit">Dodaj ogłoszenie</button>
-                        </form>
+            <?php include(dirname(__DIR__).'/Common/messages.php'); ?>
+            <h1 style="font-size:40px;text-align:center;color:black">DODAJ OGŁOSZENIE</h1><br>
+            <input name="title" type="text" placeholder="Tytuł">
+            <input name="agreement" type="text" placeholder="Typ umowy">
+            <input name="company" type="text" placeholder="Nazwa firmy">
+            <input name="town" type="text" placeholder="Miasto">
+            <textarea class="text" name="content" placeholder="Treść ogłoszenia" rows="5"></textarea>
+            <button type="submit">Dodaj ogłoszenie</button>
+        </form>
 </div>
 </body>
 </html>

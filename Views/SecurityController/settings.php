@@ -25,16 +25,8 @@
 <div class="container">
     <div class="setting">
         <h1 style="font-size:40px;text-align:center;color:black">USTAWIENIA</h1><br>
-        <div class="messages">
-                        <?php
-                            if(isset($messages)){
-                                foreach($messages as $message) {
-                                    echo $message;
-                                }
-                            }
-                        ?>
-                </div>
-                Zmień imię:
+        <?php include(dirname(__DIR__).'/Common/messages.php'); ?>
+        Zmień imię:
         <form action="?page=settings" method="POST">
                 <input name="name" type="text" placeholder="Imię">
                 <button type="submit">Zmień imię</button>

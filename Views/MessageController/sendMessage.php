@@ -1,12 +1,4 @@
-<?php
-    if(!isset($_SESSION['id']) and !isset($_SESSION['role'])) {
-        die('You are not logged in!');
-    }
-
-    if(!in_array('ROLE_USER', $_SESSION['role'])) {
-        die('You do not have permission to watch this page!');
-    }
-?>
+<?php include(dirname(__DIR__).'/Common/checkPermissions.php'); ?>
 
 <!DOCTYPE html>
 <head>
@@ -25,20 +17,12 @@
 <?php include(dirname(__DIR__).'/Common/navbar.php'); ?>
 <div class="container">
         <form action="?page=sendMessage" method="POST" class="send">
-                <div class="messages">
-                        <?php
-                            if(isset($messages)){
-                                foreach($messages as $message) {
-                                    echo $message;
-                                }
-                            }
-                        ?>
-                </div>
-                <h1 style="font-size:40px;text-align:center;color:black">WYŚLIJ WIADOMOŚĆ</h1><br>
-                <textarea class="text" name="content" placeholder="Treść wiadomości" rows="10"></textarea>
-                <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
-                <input type="hidden" name="userID" value=<?= $posts[0]->getUserID() ?>>
-                <button type="submit">Wyślij wiadomość</button>
+            <?php include(dirname(__DIR__).'/Common/messages.php'); ?>
+            <h1 style="font-size:40px;text-align:center;color:black">WYŚLIJ WIADOMOŚĆ</h1><br>
+            <textarea class="text" name="content" placeholder="Treść wiadomości" rows="10"></textarea>
+            <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
+            <input type="hidden" name="userID" value=<?= $posts[0]->getUserID() ?>>
+            <button type="submit">Wyślij wiadomość</button>
         </form>
 </div>
 </body>

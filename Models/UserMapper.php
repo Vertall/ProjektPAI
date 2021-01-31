@@ -25,7 +25,10 @@ class UserMapper
             if($user['name']==null){
                 return null;
             } else {
-                return new User($user['email'], $user['password'], $user['name'], $user['surname'], $user['id']);
+                $role = [''];
+                if($user['id_role'] == 1) $role= ['ROLE_USER'];
+                if($user['id_role'] == 2) $role= ['ROLE_USER', 'ROLE_ADMIN'];
+                return new User($user['email'], $user['password'], $user['name'], $user['surname'], $role, $user['id']);
             }
         }
         catch(PDOException $e) {

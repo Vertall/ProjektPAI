@@ -13,12 +13,14 @@ class User {
         string $password,
         string $name,
         string $surname,
+        array $role,
         string $id
     ) {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
+        $this->role = $role;
         $this->id = $id;
     }
     

@@ -1,12 +1,4 @@
-<?php
-    if(!isset($_SESSION['id']) and !isset($_SESSION['role'])) {
-        die('You are not logged in!');
-    }
-
-    if(!in_array('ROLE_USER', $_SESSION['role'])) {
-        die('You do not have permission to watch this page!');
-    }
-?>
+<?php include(dirname(__DIR__).'/Common/checkPermissions.php'); ?>
 
 <!DOCTYPE html>
 <head>
@@ -30,32 +22,32 @@
         </div>
         Typ umowy
         <div class='box'>
-        <?= $posts[0]->getAgreement() ?>
+            <?= $posts[0]->getAgreement() ?>
         </div>
         Nazwa firmy
         <div class='box'>
-        <?= $posts[0]->getCompany() ?>
+            <?= $posts[0]->getCompany() ?>
         </div>
         Miasto
         <div class='box'>
-        <?= $posts[0]->getTown() ?>
+            <?= $posts[0]->getTown() ?>
         </div>
         Treść ogłoszenia
         <div class='box'>
-        <p style="white-space: pre-line"><?= $posts[0]->getContent() ?></p>
+            <p style="white-space: pre-line"><?= $posts[0]->getContent() ?></p>
         </div>
-        <?php if($_SESSION["id"]==$posts[0]->getUserID()) { ?>
+        <?php if($_SESSION["id"]==$posts[0]->getUserID() || in_array('ROLE_ADMIN', $_SESSION['role'])) { ?>
         <form action="?page=sendMessage" method="GET" id="send">
-                <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
-                <input type="hidden" name="page" value="deletePost">
-                <button type="submit">Usuń ogłoszenie</button>
+            <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
+            <input type="hidden" name="page" value="deletePost">
+            <button type="submit">Usuń ogłoszenie</button>
         </form>
         <?php } ?>
         <?php if($_SESSION["id"]!=$posts[0]->getUserID()) { ?>
         <form action="?page=sendMessage" method="GET" id="send">
-                <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
-                <input type="hidden" name="page" value="sendMessagePage">
-                <button type="submit">Zgłoś się</button>
+            <input type="hidden" name="id" value=<?= $posts[0]->getID() ?>>
+            <input type="hidden" name="page" value="sendMessagePage">
+            <button type="submit">Zgłoś się</button>
         </form>
         <?php } ?>
     </div>

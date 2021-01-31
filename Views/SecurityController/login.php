@@ -14,15 +14,7 @@
     </div>
     <div class="login">
         <form action="?page=login" method="POST">
-            <div class="messages">
-                <?php
-                    if(isset($messages)){
-                        foreach($messages as $message) {
-                            echo $message;
-                        }
-                    }
-                ?>
-            </div>
+            <?php include(dirname(__DIR__).'/Common/messages.php'); ?>
             <input name="email" type="text" placeholder="E-mail">
             <input name="password" type="password" placeholder="Hasło">
             <button type="submit">ZALOGUJ SIĘ</button>

@@ -77,7 +77,7 @@ class SecurityController extends AppController {
                 $this->render('register', ['messages' => ['Użytkownik z tym e-mailem istnieje']]);
                 return;
             }
-            $user = new User($_POST['email'], md5($_POST['password']), $_POST['name'], $_POST['surname'],0);
+            $user = new User($_POST['email'], md5($_POST['password']), $_POST['name'], $_POST['surname'], ['ROLE_USER'], 0);
 
             $mapper->setUser($user);
             $this->render('register',['messages' => ['Zostałeś zarejestrowany. Możesz się zalogować']]);
